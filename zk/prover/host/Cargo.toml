@@ -1,0 +1,14 @@
+# Host : produit la preuve, la vérifie en natif (référence), et écrit
+# receipt.bin + imageid.bin dans testdata/ du package CC_V.
+
+[package]
+name = "host"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+methods = { path = "../methods" }
+# prove = prouveur local CPU (tire client + std). Version alignée =3.0.6.
+risc0-zkvm = { version = "=3.0.6", default-features = false, features = ["prove"] }
+borsh = "1"
+hex = "0.4"

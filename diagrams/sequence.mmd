@@ -1,0 +1,29 @@
+sequenceDiagram
+    autonumber
+    participant O as Data owner (member)
+    participant P as ZK prover (off-chain)
+    participant D as Data chaincode CC_D (members)
+    participant M as Members Org1 and Org2
+    participant S as Attestation client (non-member)
+    participant V as Verification chaincode CC_V (non-members)
+    participant L as Ledger
+
+    Note over O,P: prepare proof
+    O->>P: D
+    P-->>O: proof, C = sha256(D), journal = C, min, max
+
+    Note over O,L: TX1 write private data, endorsed OR(Org1, Org2)
+    O->>D: SubmitData(key, D via transient)
+    D->>L: commit C public, status pending
+
+    Note over M: binding signatures
+    M->>M: each member ECDSA-signs CBMSEP-BIND-v1 | key | C
+    M-->>S: sigma = member signatures (requiredMembers = 2)
+
+    Note over S,V: TX2 attest, endorsed OutOf(2,3)
+    S->>V: Attest(key, C, sigma, proof, publicIn)
+    V->>V: verify binding (members co-signed C, pinned CA roots)
+    V->>V: verify STARK proof (journal head = C, journal tail = publicIn, image id pinned)
+    Note over V: no private-read API, D never accessed
+    V->>L: commit attestation (status attested, submittedBy, proofDigest)
+    V-->>S: Attest OK

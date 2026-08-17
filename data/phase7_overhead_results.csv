@@ -1,0 +1,4 @@
+label,mean_ms,sd_ms,min_ms,max_ms,reps
+PRV,39710,1777,38166,42199,3
+TX1_NativePDC,2338,183,2229,2991,15
+TX2_FullCBMSEP,2819,89,2622,2981,15

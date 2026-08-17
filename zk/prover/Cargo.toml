@@ -1,0 +1,7 @@
+# Brique A — prouveur RISC Zero (guest + host).
+# Le guest (methods/guest) est compilé par risc0-build via methods/build.rs ;
+# il n'est PAS membre de ce workspace (cible riscv différente).
+
+[workspace]
+resolver = "2"
+members = ["host", "methods"]

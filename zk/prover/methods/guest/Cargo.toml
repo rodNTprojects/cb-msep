@@ -1,0 +1,14 @@
+# Guest RISC Zero. Package "predicate" -> constantes générées PREDICATE_ELF /
+# PREDICATE_ID. Le [workspace] vide en fait son propre workspace (cible riscv).
+
+[package]
+name = "predicate"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[dependencies]
+# Version alignée sur host/verifier-wasm (=3.0.6). std activé pour Vec/sha2.
+risc0-zkvm = { version = "=3.0.6", default-features = false, features = ["std"] }
+sha2 = "0.10"

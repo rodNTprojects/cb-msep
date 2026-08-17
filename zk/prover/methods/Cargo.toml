@@ -1,0 +1,13 @@
+# Crate "methods" : compile le guest et génère PREDICATE_ELF / PREDICATE_ID.
+
+[package]
+name = "methods"
+version = "0.1.0"
+edition = "2021"
+
+[build-dependencies]
+# Doit correspondre à la version de risc0-zkvm (=3.0.6).
+risc0-build = "=3.0.6"
+
+[package.metadata.risc0]
+methods = ["guest"]

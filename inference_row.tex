@@ -1,0 +1,25 @@
+% Horizontal block: the two inference figures side by side.
+% Preamble: \usepackage{pgf}\usepackage{graphicx}\usepackage{subcaption}
+
+\begin{figure*}[!t]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{Figures/fig_inference_entropy.pgf}}
+    \caption{Residual entropy per predicate.}
+    \label{fig:entropy}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{Figures/fig_inference_leak.pgf}}
+    \caption{Information leak vs.\ interval width.}
+    \label{fig:leak}
+  \end{subfigure}
+  \caption{Predicate-level inference on the workload: residual entropy~(a) and
+  leakage~(b) as the proved interval widens.}
+  \label{fig:inference}
+\end{figure*}
+
+% PDF variant (replace the two \resizebox lines):
+%   \includegraphics[width=\linewidth]{Figures/fig_inference_entropy.pdf}
+%   \includegraphics[width=\linewidth]{Figures/fig_inference_leak.pdf}

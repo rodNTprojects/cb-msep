@@ -1,0 +1,14 @@
+organizations/
+channel-artifacts/
+workload/receipts/
+*.tar.gz
+*:Zone.Identifier
+__pycache__/
+figures/
+figures_pdf/
+plots/
+**/target/
+zk/prover/target/
+zk/verifier-wasm/target/
+chaincode/verification/verification
+chaincode/data/data

@@ -1,0 +1,24 @@
+# zk/verifier-wasm — module WASM "reactor" pour wazero (brique B).
+# Exporte alloc/dealloc/verify/journal_* ; l'hôte Go (chaincode/verification/
+# verifier_stark.go) écrit le receipt en mémoire linéaire et appelle verify().
+#
+# Build : cargo build --release --target wasm32-wasip1
+# Sortie : target/wasm32-wasip1/release/verifier_wasm.wasm
+#          -> copié en chaincode/verification/verifier.wasm par scripts/build_verifier.sh
+
+[package]
+name = "verifier-wasm"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]   # reactor : fonctions exportées, pas d'exécutable
+
+[dependencies]
+# Même version que la brique A (zk/prover) pour un format borsh identique.
+risc0-zkvm = { version = "=3.0.6", default-features = false, features = ["std"] }
+borsh = "1"
+
+[profile.release]
+opt-level = "z"
+lto = true
